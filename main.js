@@ -4,26 +4,26 @@ const button = document.getElementById('add_task');
 const taskList = [
     {
         id: 0,
-        task: "Встать"
+        task: "Task 1........"
     },
     {
         id: 1,
-        task: "Помыть лицо"
+        task: "Task 2........"
     },
     {
         id: 2,
-        task: "Выспаться"
+        task: "Task 3........"
     }
 ];
 
 function deleteTask(e){
     taskList.splice(e.target.id, 1);
-    render()
+    render();
 }
 
 function changeTask(e){
-    const chnagedText = prompt('Change task:', taskList[e.target.id].task);
-    taskList[e.target.id].task = chnagedText;
+    const changeTask = prompt('Change task:', taskList[e.target.id].task);
+    taskList[e.target.id].task = changeTask;
     render()
 }
 
@@ -64,9 +64,24 @@ button.onclick = () => {
 
 }
 
+
 render()
+input.addEventListener('change', (e)=>{
+    if (e.target.value.length >= 10){
+        const newTask = {
+            id: taskList.length,
+            task: e.target.value
+        };
+        taskList.push(newTask);
 
+        e.target.value = ''
+        render()
+    }
+    else {
+        alert("Введи больше 10 символов !!! ")
+    }
+})
 
-input.onchange = (e) => {
-    console.log(e.target.value)
-}
+// input.onchange = (e) => {
+//    console.log(e.target.value)
+// }
